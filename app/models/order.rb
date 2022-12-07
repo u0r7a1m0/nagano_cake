@@ -1,6 +1,9 @@
 class Order < ApplicationRecord
   validates :postal_code, :address, :name, :postage, :total_price, presence: true
-  
+
+  has_many :order_details
+  belongs_to :customer
+
   enum order_status:{
     payment_wating: 0, #入金待ち
     payment_confirmation: 1, #入金確認
@@ -13,4 +16,17 @@ class Order < ApplicationRecord
     bank:1 #銀行振込
   }
   
+  ## 小計を求めるメソッド
+  def subtotal
+    item.with_tax_price * amount
+  end
+  ## 消費税を求めるメソッド
+  def with_tax_price
+    (price * 1.1).floor
+  end
+  
+  def address_display
+  '〒' + postal_code + ' ' + address + ' ' + name
+  end
+
 end

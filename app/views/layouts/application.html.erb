@@ -6,11 +6,102 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
+  <body class="d-flex flex-column">
+    <!--ヘッダーここから-->
+    <header class="bg-light text-dark shadow-sm">
+      <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="container">
+          <a class="navbar-brand p-1 text-dark" href="/">ながのCAKE</a>
+          <!--レスポンシブボタン-->
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <!--レスポンシブボタンここまで-->
+          <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <!--ナビゲーション-->
+            <ul class="navbar-nav ml-auto">
+
+            <!--カスタマーログイン-->
+            <% if customer_signed_in? %>
+              <!--マイページ-->
+              <li class="nav-item">
+                <%= link_to 'マイページ', my_page_path, class: 'nav-link text-dark' %>
+              </li>
+
+              <!--商品一覧-->
+              <li class="nav-item">
+                <%= link_to '商品一覧', items_path, class: 'nav-link text-dark' %>
+              </li>
+              <!--ブックス-->
+              <li class="nav-item">
+              <%= link_to 'カート', cart_items_path, class: 'nav-link text-dark' %>
+
+              </li>
+
+              <!--ログアウト-->
+              <li class="nav-item">
+                <%= link_to "ログアウト", destroy_customer_session_path, method: :delete, class: 'nav-link text-dark' %>
+              </li>
+
+              <% elsif admin_signed_in? %>
+              <!--管理者ログイン-->
+              <!--商品一覧-->
+              <li class="nav-item">
+                <%= link_to '商品一覧', items_path, class: 'nav-link text-dark' %>
+              </li>
+              <!--会員一覧-->
+              <li class="nav-item">
+              <%= link_to '会員一覧', admin_customers_path, class: 'nav-link text-dark' %>
+              </li>
+              <!--注文履歴一覧-->
+              <li class="nav-item">
+              <%= link_to '注文履歴一覧', admin_customers_path, class: 'nav-link text-dark' %>
+              </li>
+              <!--ログアウト-->
+              <li class="nav-item">
+                <%= link_to "ログアウト", destroy_customer_session_path, method: :delete, class: 'nav-link text-dark' %>
+              </li>
+
+              <% else %>
+              <!--未ログインユーザー-->
+              <!--アバウト-->
+              <li class="nav-item">
+                <%= link_to 'About',about_path, class: 'nav-link text-dark' %>
+              </li>
+              <!--商品一覧-->
+              <li class="nav-item">
+                <%= link_to '商品一覧',items_path, class: 'nav-link text-dark' %>
+              </li>
+              <!--新規登録-->
+              <li class="nav-item">
+                <%= link_to '新規登録' ,new_customer_registration_path, class: 'nav-link text-dark' %>
+              </li>
+              <!--ログイン-->
+              <li class="nav-item">
+                <% if request.fullpath.include? "/admin" %>
+                  <!--admin側のheaderを返す-->
+                  <%= link_to 'ログイン', new_admin_session_path, class: 'nav-link text-dark' %>
+                  <% else %>
+                  <!--user側のheaderを返す-->
+                  <%= link_to 'ログイン', new_customer_session_path, class: 'nav-link text-dark' %>
+                <% end %>
+              </li>
+
+              <% end %>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <main>
     <%= yield %>
+    </main>
+    <footer>
+      <div class="bg-dark h-50"></div>
+    </footer>
   </body>
 </html>
