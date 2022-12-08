@@ -1,1 +1,36 @@
-<h2>public/homes#top</h2>
+
+
+<div class="container mt-4">
+
+  <div class="row">
+    <div class="col-md-2">
+      <div class="card mt-3">
+        <div class="card-header">ジャンル検索</div>
+        <p class="card-text m-3">ケーキ</p>
+        <p class="card-text m-3">焼き菓子</p>
+        <p class="card-text m-3">プリン</p>
+        <p class="card-text m-3">キャンディ</p>
+      </div>
+    </div>
+    <div class="col-md-8 mt-3">
+
+      <div class="card mb-3" style="">
+        <img class="card-img" src="/top.jpg" alt="">
+        <div class="card-img-overlay d-flex align-items-center">
+          <p class="text-white">
+            ようこそ、ながのCAKEへ！<br />
+            このサイトは、ケーキ販売のECサイトになります。<br />
+            会員でない方も商品の閲覧はできますが、<br />
+            購入には会員登録が必要になります。
+          </p>
+        </div>
+      </div>
+
+      <h5><strong>新着商品</strong></h5>
+      <div class="text-right my-3">
+      <%= link_to '全ての商品を見る>', items_path %>
+
+      </div>
+    </div>
+  </div>
+</div>
