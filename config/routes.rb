@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
 
-
   # 顧客用
   # URL /customers/sign_in ...
   devise_for :customers,skip: [:passwords], controllers: {
@@ -19,7 +18,6 @@ Rails.application.routes.draw do
   ## URLの「public」部分なしのができる！
   scope module: :public do
     ## 取得できるアクションがメジャーなやつだけなのでイレギュラーのアクションは「GET」で指定する必要がある！
-    resources :items, :cart_items, :orders, :addreses
     get '/about' => 'homes#about'
     ## URLが違うものになるものは「get」などで一つずつ指定してあげる！
 
@@ -37,6 +35,7 @@ Rails.application.routes.draw do
     get '/orders/confirm' => 'orders#confirm', as: 'confirm'
     get '/orders/complete' => 'orders#complete', as: 'complete'
 
+    resources :items, :cart_items, :orders, :addreses
   end
 
 
@@ -45,8 +44,8 @@ Rails.application.routes.draw do
   # 管理者側のルーティング設定
   ## URLの頭に「admin」入れる設定
   namespace :admin do
-    resources :items, :customers, :genres, :orders, :order_details
     root to: 'homes#top'
+    resources :items, :customers, :genres, :orders, :order_details
 
   end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

@@ -31,17 +31,14 @@
               <li class="nav-item">
                 <%= link_to 'マイページ', my_page_path, class: 'nav-link text-dark' %>
               </li>
-
               <!--商品一覧-->
               <li class="nav-item">
                 <%= link_to '商品一覧', items_path, class: 'nav-link text-dark' %>
               </li>
-              <!--ブックス-->
+              <!--カート-->
               <li class="nav-item">
               <%= link_to 'カート', cart_items_path, class: 'nav-link text-dark' %>
-
               </li>
-
               <!--ログアウト-->
               <li class="nav-item">
                 <%= link_to "ログアウト", destroy_customer_session_path, method: :delete, class: 'nav-link text-dark' %>
@@ -90,7 +87,6 @@
                   <%= link_to 'ログイン', new_customer_session_path, class: 'nav-link text-dark' %>
                 <% end %>
               </li>
-
               <% end %>
             </ul>
           </div>
@@ -100,8 +96,8 @@
     <main>
     <%= yield %>
     </main>
-    <footer class="mt-auto fixed-bottom">
-      <div class="bg-secondary text-dark py-5 mt-5"></div>
+    <footer class="mt-10">
+      <div class="bg-secondary text-dark py-4 fixed-bottom"></div>
     </footer>
   </body>
 </html>
