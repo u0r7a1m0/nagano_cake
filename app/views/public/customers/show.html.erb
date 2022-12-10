@@ -1,18 +1,17 @@
 
-<div class="container mt-5">
+<div class="container mt-4">
   <div class="row">
-    <div class="col-md-10 mx-auto mb-5">
-      <h4 class="bg-light d-inline px-4">マイページ</h4>
+    <div class="col-md-8 mb-4 ml-md-5">
+      <h5 class="bg-light d-inline px-3">マイページ</h5>
     </div>
   </div>
+
   <div class="row">
-    <table class="col-md-4">
+    <table class="col-md-5 mb-3">
       <tr>
-        <td class="text-center">登録情報</td>
+        <td class="text-left pl-3" style="width: 30%"><strong>登録情報</strong></td>
         <td>
-          <button type="submit" class="btn btn-success mb-3">
-            編集する
-          </button>
+          <%= link_to '編集する', customers_edit_path, class: 'btn btn-success px-4' %>
         </td>
       </tr>
     </table>
@@ -20,7 +19,7 @@
 
 
   <div class="row">
-    <div class="col-md-8">
+    <div class="col-md-9">
       <table class="table table-bordered">
         <tr>
           <td class="bg-light" style="width: 30%">氏名</td>
@@ -32,56 +31,56 @@
         <tr>
           <td class="bg-light">カナ</td>
           <td>
-
+            <%= current_customer.full_name_kana %>
           </td>
         </tr>
         <tr>
           <td class="bg-light">郵便番号</td>
           <td>
+            <%= current_customer.postal_code %>
 
           </td>
         </tr>
         <tr>
           <td class="bg-light">住所</td>
           <td>
-
+            <%= current_customer.address %>
           </td>
         </tr>
         <tr>
           <td class="bg-light">電話番号</td>
           <td>
-
+            <%= current_customer.telephone_number %>
           </td>
         </tr>
         <tr>
           <td class="bg-light">メールアドレス</td>
           <td>
-
+            <%= current_customer.email %>
           </td>
         </tr>
       </table>
     </div>
   </div>
-  <div class="row">
-    <table class="col-md-5">
+
+  <div class="row mt-2">
+    <table class="col-md-5" cellpadding="10">
       <tr>
-        <td class="text-center">登録情報</td>
+        <td class="text-left pl-3" style="width: 30%"><strong>配送先</strong></td>
         <td>
-          <button type="submit" class="btn btn-primary mb-3 mx-2">
-            一覧をみる
-          </button>
+          <%= link_to '一覧を見る', addresses_path, class: 'btn btn-primary px-4' %>
         </td>
       </tr>
+
       <tr>
-        <td class="text-center">注文履歴</td>
+        <td class="text-left pl-3"><strong>注文履歴</strong></td>
         <td>
-          <button type="submit" class="btn btn-primary mb-3 mx-2">
-            一覧をみる
-          </button>
+          <%= link_to '一覧を見る', orders_path, class: 'btn btn-primary px-4' %>
         </td>
       </tr>
     </table>
   </div>
+
 </div>
 
 

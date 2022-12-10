@@ -35,7 +35,7 @@ Rails.application.routes.draw do
     get '/orders/confirm' => 'orders#confirm', as: 'confirm'
     get '/orders/complete' => 'orders#complete', as: 'complete'
 
-    resources :items, :cart_items, :orders, :addreses
+    resources :items, :cart_items, :orders, :addresses
   end
 
 

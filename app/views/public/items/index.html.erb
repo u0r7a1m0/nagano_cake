@@ -11,15 +11,12 @@
       </div>
     </div>
     <div class="col-md-8 mt-3">
-      <h4>商品一覧(全x件)</h4>
-
+      <h4>商品一覧(全<%= @count %>件)</h4>
+      <% @items.each do |item| %>
+        <%= image_tag item.get_item_image(100,80) %>
+        <%= item.name %>
+        <%= item.introduction %>
+      <% end %>
     </div>
-
-
-
   </div>
-
-
-
-
 </div>

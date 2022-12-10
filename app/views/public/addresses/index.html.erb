@@ -1,0 +1,49 @@
+<!--配送先登録・一覧ページ-->
+<div class="container mt-4">
+  <div class="row">
+    <div class="col-md-10 mx-auto">
+      <h5 class="bg-light d-inline px-4">配送先登録/一覧</h5>
+    </div>
+  </div>
+
+  <div class="row mt-4">
+    <div class="col-md-10">
+    <%= form_with model: @address do |f| %>
+      <div class="field d-md-flex mt-3">
+        <div class="col-md-3 mt-3">
+          <%= f.label :'郵便番号(ハイフンなし)' %>
+        </div>
+        <div class="col-md-3 mt-md-3">
+          <%= f.text_field :postal_code, autofocus: true, id:"inputPostalCode", placeholder: "0000000", class:'form-control' %>
+        </div>
+      </div>
+
+      <div class="field d-md-flex">
+        <div class="col-md-3 mt-3">
+          <%= f.label :'住所' %>
+        </div>
+        <div class="col-md-7 mt-md-3">
+          <%= f.text_field :address, autofocus: true, id:"inputAddress", placeholder: "東京都渋谷区代々木神園町0-0", class:'form-control' %>
+        </div>
+      </div>
+
+      <div class="d-md-flex">
+        <div class="field col-md-3 mt-3">
+          <%= f.label :'宛名' %>
+        </div>
+        <div class="col-md-3 mt-md-3">
+          <%= f.text_field :name, autofocus: true, id:"inputName", placeholder: "令和道子", class:'form-control' %>
+        </div>
+        <div class="col-md-4 mt-3">
+        </div>
+        <div class="actions col-md-4 mt-3">
+          <button type="submit" class="btn btn-success px-4">
+          新規登録
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <% end %>
+</div>
