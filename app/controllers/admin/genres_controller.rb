@@ -1,7 +1,20 @@
 class Admin::GenresController < ApplicationController
+  # def index
+  #   @genre = Genre.new
+  #   @genres = Genre.all
   def index
-    @genre = Genre.new
-    @genres = Genre.all
+    # urlにcategory_id(params)がある場合
+    if params[:genre_id]
+      # Categoryのデータベースのテーブルから一致するidを取得
+      @genre = Genres.find(params[:genre_id])
+
+      # category_idと紐づく投稿を取得
+      @items = @genre.items.order(created_at: :desc).all
+    else
+      # 投稿すべてを取得
+      @items = Item.order(created_at: :desc).all
+    end
+
   end
 
   def create

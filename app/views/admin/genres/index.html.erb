@@ -5,6 +5,9 @@
   <div class="row mb-5">
     <h5 class="bg-light d-inline px-3 ml-5">ジャンル一覧・追加</h5>
   </div>
+  <% @items.each do |item| %>
+  <%= item.title %>
+  <% end %>
 
   <!--ジャンル登録-->
   <div class="genre-new d-flex">

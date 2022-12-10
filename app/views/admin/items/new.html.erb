@@ -1,1 +1,85 @@
-<h2>admin/items#new</h2>
+<div class="container mt-4">
+  <div class="row">
+    <h5 class="col-md-3 mb-4 bg-light d-inline text-center">商品新規登録</h5>
+  </div>
+
+  <div class="row">
+    <div class="col-md-7 mx-auto">
+      <table class="table-sm my-4">
+        <%= form_with model: @item do |f| %>
+        <tr>
+          <td>商品画像</td>
+          <td>
+              <p><%= f.file_field :item_image, placeholder: "", accept: "image/*" %></p>
+          </td>
+        </tr>
+
+        <tr>
+          <td>商品名</td>
+          <td>
+            <%= f.text_field :name, autofocus: true, id:"inputName", placeholder: "商品名", class:'form-control' %>
+          </td>
+        </tr>
+
+        <tr>
+          <td>商品説明</td>
+          <td>
+            <%= f.text_area :introduction, autofocus: true, id:"inputIntroduction", placeholder: "ここに説明文を記述します", class:'form-control' %>
+          </td>
+        </tr>
+
+        <!--<tr>-->
+        <!--  <td>ジャンル</td>-->
+        <!--  <td>-->
+        <!--    <%#= form_tag @item do %>-->
+        <!--    <div class="form">-->
+        <!--      <div class="form-body">-->
+        <!--        <p>ジャンル</p>-->
+        <!--        <select name="ジャンル">-->
+        <!--          <%#@genres.each do |genre|%>-->
+        <!--            <option value=<%#="#{genre.name}"%>><%#=genre.name%></option>-->
+        <!--          <%#end%>-->
+        <!--        </select>-->
+        <!--        <p>商品</p>-->
+        <!--        <input type="text" name="item_name">-->
+        <!--        <input type="submit" value="保存">-->
+        <!--      </div>-->
+        <!--    </div>-->
+        <!--  <%# end %>-->
+        <!--  </td>-->
+        <!--</tr>-->
+
+        <tr>
+          <td>税抜価格</td>
+          <td class="d-flex">
+            <%= f.number_field :price, autofocus: true, id:"inputPrice", placeholder: "1000", class:'form-control' %>
+            <p>円</p>
+          </td>
+        </tr>
+
+        <tr>
+          <td>販売ステータス</td>
+          <td>
+            <label>
+              <%= f.radio_button :is_active, "true", checked: true %>販売中
+              <%= f.radio_button :is_active, "false" %>販売停止
+            </label>
+          </td>
+        </tr>
+      </table>
+      <div class="mx-auto d-flex justify-content-center">
+      <button class="btn btn-success">
+        新規登録
+      </button>
+
+      </div>
+      <% end %>
+
+
+    </div>
+  </div>
+
+
+
+
+</div>

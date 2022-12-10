@@ -6,7 +6,7 @@
 
   <div class="row mt-5">
     <div class="col-md-9 m-auto">
-      <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+      <%= form_with model: @admin ,url: admin_session_path do |f| %>
       <div class="field d-md-flex">
         <div class="col-md-3">
           <%= f.label :メールアドレス %>

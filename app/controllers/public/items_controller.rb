@@ -1,5 +1,37 @@
 class Public::ItemsController < ApplicationController
+  def new
+    @item = Item.new
+    # @genres = Genre.all
+  end
 
+  def create
+    @item = Item.new(item_params)
+    if @item.save
+      # 投稿成功した場合
+      flash[:notice]="You have created item successfully."
+      redirect_to admin_item_path(@item.id)
+    else
+      @item = Item.new
+      render "admin/items/show"
+    # @genre = Genre.find_by(genre: params[:game_name])
+    # @item = Item.new(genre_id: @genre.id,item: params[:item_name])
+    # @item.save
+    end
+  end
+
+    # def create
+    # @book = Book.new(book_params)
+    # @book.user_id = current_user.id
+
+    # if @book.save
+    #   # 投稿成功した場合
+    #   flash[:notice]="You have created book successfully."
+    #   redirect_to book_path(@book.id)
+    # else
+    #   # 投稿が失敗した場合
+    #   @books=Book.all
+    #   render :index
+    # end
 
   def index
     @items = Item.all
@@ -16,5 +48,8 @@ class Public::ItemsController < ApplicationController
 
   def item_params
     params.require(:item).permit(:name, :item_image, :introduction, :price, :is_active)
+  end
+  def genre_params
+    params.require(:genre).permit(:name)
   end
 end
