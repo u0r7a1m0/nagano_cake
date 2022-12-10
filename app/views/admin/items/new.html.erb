@@ -1,74 +1,72 @@
-<div class="container mt-4">
+<div class="container">
   <div class="row">
-    <h5 class="col-md-3 mb-4 bg-light d-inline text-center">商品新規登録</h5>
+    <div class="col-md-6">
+      <h5 class="bg-light d-inline px-4">商品新規登録</h5>
+    </div>
+
   </div>
 
-  <div class="row">
-    <div class="col-md-7 mx-auto">
-      <table class="table-sm my-4">
+  <div class="row mt-4">
+    <div class="col-md-8 mx-auto">
         <%= form_with model: @item do |f| %>
-        <tr>
-          <td>商品画像</td>
-          <td>
-              <p><%= f.file_field :item_image, placeholder: "", accept: "image/*" %></p>
-          </td>
-        </tr>
 
-        <tr>
-          <td>商品名</td>
-          <td>
-            <%= f.text_field :name, autofocus: true, id:"inputName", placeholder: "商品名", class:'form-control' %>
-          </td>
-        </tr>
+        <div class="field d-md-flex mt-3">
+          <div class="col-md-3">
+            <%= f.label :'商品画像'%>
+          </div>
+          <div class="col-md-6">
+          <%= f.file_field :item_image, placeholder: "", accept: "image/*" %>
+          </div>
+        </div>
 
-        <tr>
-          <td>商品説明</td>
-          <td>
-            <%= f.text_area :introduction, autofocus: true, id:"inputIntroduction", placeholder: "ここに説明文を記述します", class:'form-control' %>
-          </td>
-        </tr>
+        <div class="field d-md-flex mt-3">
+          <div class="col-md-3">
+          <%= f.label :'商品名'%>
+          </div>
+          <div class="col-md-6">
+          <%= f.text_field :name, autofocus: true, autocomplete: "name", placeholder: "商品名", class: "form-control " %>
+          </div>
+        </div>
 
-        <!--<tr>-->
-        <!--  <td>ジャンル</td>-->
-        <!--  <td>-->
-        <!--    <%#= form_tag @item do %>-->
-        <!--    <div class="form">-->
-        <!--      <div class="form-body">-->
-        <!--        <p>ジャンル</p>-->
-        <!--        <select name="ジャンル">-->
-        <!--          <%#@genres.each do |genre|%>-->
-        <!--            <option value=<%#="#{genre.name}"%>><%#=genre.name%></option>-->
-        <!--          <%#end%>-->
-        <!--        </select>-->
-        <!--        <p>商品</p>-->
-        <!--        <input type="text" name="item_name">-->
-        <!--        <input type="submit" value="保存">-->
-        <!--      </div>-->
-        <!--    </div>-->
-        <!--  <%# end %>-->
-        <!--  </td>-->
-        <!--</tr>-->
+        <div class="field d-md-flex mt-3">
+          <div class="col-md-3">
+          <%= f.label :'商品説明'%>
+          </div>
+          <div class="col-md-6">
+          <%= f.text_area :introduction, autofocus: true, id:"inputIntroduction", placeholder: "ここに説明文を記述します", class:'form-control' %>
+          </div>
+        </div>
 
-        <tr>
-          <td>税抜価格</td>
-          <td class="d-flex">
-            <%= f.number_field :price, autofocus: true, id:"inputPrice", placeholder: "1000", class:'form-control' %>
-            <p>円</p>
-          </td>
-        </tr>
+        <div class="field d-md-flex mt-3">
+          <div class="col-md-3">
+          <%= f.label :'税抜価格'%>
+          </div>
+          <div class="col-md-6 d-flex">
+          <%= f.number_field :price, autofocus: true, id:"inputPrice", placeholder: "1000", class:'form-control' %>
+          <p>円</p>
+          </div>
+        </div>
 
-        <tr>
-          <td>販売ステータス</td>
-          <td>
+        <div class="field d-md-flex mt-3">
+          <div class="col-md-3">
+          <%= f.label :'販売ステータス'%>
+          </div>
+          <div class="col-md-6">
             <label>
               <%= f.radio_button :is_active, "true", checked: true %>販売中
+
+              </label>
+              <label class="ml-3">
+
               <%= f.radio_button :is_active, "false" %>販売停止
             </label>
-          </td>
-        </tr>
-      </table>
+            </div>
+        </div>
+
+
+
       <div class="mx-auto d-flex justify-content-center">
-      <button class="btn btn-success">
+      <button type="submit" class="btn btn-success my-4 mx-auto px-4">
         新規登録
       </button>
 

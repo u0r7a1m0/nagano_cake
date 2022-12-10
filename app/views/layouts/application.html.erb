@@ -5,14 +5,14 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
+    <script src="https://kit.fontawesome.com/c1c2279c79.js" crossorigin="anonymous"></script>
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body class="d-flex flex-column">
     <!--ヘッダーここから-->
-    <header class="bg-light text-dark shadow-sm">
+    <header class="bg-light text-secondary shadow-sm">
       <nav class="navbar navbar-expand-lg navbar-light">
         <div class="container">
           <a class="navbar-brand p-1 text-dark" href="/"><strong>ながのCAKE</strong></a>
@@ -32,19 +32,19 @@
               </li>
               <!--マイページ-->
               <li class="nav-item">
-                <%= link_to 'マイページ', my_page_path, class: 'nav-link btn btn-outline-dark mr-md-2 mb-sm-2' %>
+                <%= link_to 'マイページ', my_page_path, class: 'nav-link btn btn-outline-secondary mr-md-2 mb-sm-2' %>
               </li>
               <!--商品一覧-->
               <li class="nav-item">
-                <%= link_to '商品一覧', items_path, class: 'nav-link btn btn-outline-dark mr-md-2 mb-sm-2' %>
+                <%= link_to '商品一覧', items_path, class: 'nav-link btn btn-outline-secondary mr-md-2 mb-sm-2' %>
               </li>
               <!--カート-->
               <li class="nav-item">
-              <%= link_to 'カート', cart_items_path, class: 'nav-link btn btn-outline-dark mr-md-2 mb-sm-2' %>
+              <%= link_to 'カート', cart_items_path, class: 'nav-link btn btn-outline-secondary mr-md-2 mb-sm-2' %>
               </li>
               <!--ログアウト-->
               <li class="nav-item">
-                <%= link_to "ログアウト", destroy_customer_session_path, method: :delete, class: 'nav-link btn btn-outline-dark' %>
+                <%= link_to "ログアウト", destroy_customer_session_path, method: :delete, class: 'nav-link btn btn-outline-secondary' %>
               </li>
 
               <% elsif admin_signed_in? %>
@@ -52,47 +52,47 @@
               <!--管理者ログイン-->
               <!--商品一覧-->
               <li class="nav-item">
-                <%= link_to '商品一覧', admin_items_path, class: 'nav-link btn btn-outline-dark mr-md-2 mb-sm-2' %>
+                <%= link_to '商品一覧', admin_items_path, class: 'nav-link btn btn-outline-secondary mr-md-2 mb-sm-2' %>
               </li>
               <!--会員一覧-->
               <li class="nav-item">
-              <%= link_to '会員一覧', admin_customers_path, class: 'nav-link btn btn-outline-dark mr-md-2 mb-sm-2' %>
+              <%= link_to '会員一覧', admin_customers_path, class: 'nav-link btn btn-outline-secondary mr-md-2 mb-sm-2' %>
               </li>
               <!--注文履歴一覧-->
               <li class="nav-item">
-              <%= link_to '注文履歴一覧', admin_customers_path, class: 'nav-link btn btn-outline-dark mr-md-2 mb-sm-2' %>
+              <%= link_to '注文履歴一覧', admin_customers_path, class: 'nav-link btn btn-outline-secondary mr-md-2 mb-sm-2' %>
               </li>
               <!--ジャンル一覧-->
               <li class="nav-item">
-              <%= link_to 'ジャンル一覧', admin_genres_path, class: 'nav-link btn btn-outline-dark mr-md-2 mb-sm-2' %>
+              <%= link_to 'ジャンル一覧', admin_genres_path, class: 'nav-link btn btn-outline-secondary mr-md-2 mb-sm-2' %>
               </li>
               <!--ログアウト-->
               <li class="nav-item">
-                <%= link_to "ログアウト", destroy_customer_session_path, method: :delete, class: 'nav-link text-dark btn btn-outline-dark' %>
+                <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: 'nav-link btn btn-outline-secondary' %>
               </li>
 
               <% else %>
               <!--未ログインユーザー-->
               <!--アバウト-->
               <li class="nav-item">
-                <%= link_to 'About',about_path, class: 'nav-link btn btn-outline-dark mr-md-2 mb-sm-2' %>
+                <%= link_to 'About',about_path, class: 'nav-link btn btn-outline-secondary mr-md-2 mb-sm-2' %>
               </li>
               <!--商品一覧-->
               <li class="nav-item">
-                <%= link_to '商品一覧',items_path, class: 'nav-link btn btn-outline-dark mr-md-2 mb-sm-2' %>
+                <%= link_to '商品一覧',items_path, class: 'nav-link btn btn-outline-secondary mr-md-2 mb-sm-2' %>
               </li>
               <!--新規登録-->
               <li class="nav-item">
-                <%= link_to '新規登録' ,new_customer_registration_path, class: 'nav-link btn btn-outline-dark mr-md-2 mb-sm-2' %>
+                <%= link_to '新規登録' ,new_customer_registration_path, class: 'nav-link btn btn-outline-secondary mr-md-2 mb-sm-2' %>
               </li>
               <!--ログイン-->
               <li class="nav-item">
                 <% if request.fullpath.include? "/admin" %>
                   <!--admin側のheaderを返す-->
-                  <%= link_to 'ログイン', new_admin_session_path, class: 'nav-link btn btn-outline-dark mr-md-2 mb-sm-2' %>
+                  <%= link_to 'ログイン', new_admin_session_path, class: 'nav-link btn btn-outline-secondary mr-md-2 mb-sm-2' %>
                   <% else %>
                   <!--user側のheaderを返す-->
-                  <%= link_to 'ログイン', new_customer_session_path, class: 'nav-link btn btn-outline-dark' %>
+                  <%= link_to 'ログイン', new_customer_session_path, class: 'nav-link btn btn-outline-secondary' %>
                 <% end %>
               </li>
               <% end %>
@@ -101,11 +101,11 @@
         </div>
       </nav>
     </header>
-    <main>
+    <main class="m-5">
     <%= yield %>
     </main>
-    <footer class="mt-10">
-      <div class="bg-secondary text-dark py-4 fixed-bottom"></div>
+    <footer>
+      <div class="bg-secondary text-secondary py-4 fixed-bottom"></div>
     </footer>
   </body>
 </html>
