@@ -44,11 +44,10 @@
               </li>
               <!--ログアウト-->
               <li class="nav-item">
-                <%= link_to "ログアウト", destroy_customer_session_path, method: :delete, class: 'nav-link btn btn-outline-secondary' %>
+                <%= link_to "ログアウト", destroy_customer_session_path, method: :delete, class: 'nav-link btn btn-outline-secondary my-1' %>
               </li>
 
               <% elsif admin_signed_in? %>
-
               <!--管理者ログイン-->
               <!--商品一覧-->
               <li class="nav-item">
@@ -60,7 +59,7 @@
               </li>
               <!--注文履歴一覧-->
               <li class="nav-item">
-              <%= link_to '注文履歴一覧', admin_customers_path, class: 'nav-link btn btn-outline-secondary mr-md-2 my-1' %>
+              <%= link_to '注文履歴一覧', admin_root_path, class: 'nav-link btn btn-outline-secondary mr-md-2 my-1' %>
               </li>
               <!--ジャンル一覧-->
               <li class="nav-item">
@@ -92,7 +91,7 @@
                   <%= link_to 'ログイン', new_admin_session_path, class: 'nav-link btn btn-outline-secondary mr-md-2 my-1' %>
                   <% else %>
                   <!--user側のheaderを返す-->
-                  <%= link_to 'ログイン', new_customer_session_path, class: 'nav-link btn btn-outline-secondary' %>
+                  <%= link_to 'ログイン', new_customer_session_path, class: 'nav-link btn btn-outline-secondary my-1' %>
                 <% end %>
               </li>
               <% end %>

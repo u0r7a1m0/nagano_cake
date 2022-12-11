@@ -12,7 +12,9 @@
       <!--商品画像-->
 
       <div class="col-md-4">
-        <%= image_tag @item.item_image, url: admin_item_path %>
+        <%#= image_tag @item.item_image, url: admin_item_path %>
+        <%= image_tag @item.item_image,size: '300x200', url: admin_item_path %>
+
       </div>
 
         <div class="col-md-8">

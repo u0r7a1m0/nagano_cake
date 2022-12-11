@@ -1,8 +1,7 @@
 <!--ジャンル一覧・追加ページ-->
-
 <div class="container">
+    <!--<div class="text-success mb-3"> <%= flash[:notice] %> </div>-->
   <div class="row">
-    <div class="text-success mb-3"> <%= flash[:notice] %> </div>
     <h5 class="bg-light d-inline px-4 ml-5">ジャンル一覧・追加</h5>
   </div>
 
@@ -40,9 +39,8 @@
         <tr class="border-bottom my-auto">
           <td><%= genre.name %></td>
           <td>
-            <button class="btn btn-success">
-            編集する
-            </button>
+            <%#= link_to "Edit", edit_book_path(@books.id), class:'btn bg-success text-white' %>
+            <%= link_to '編集する', edit_admin_genre_path(genre.id), class: 'btn btn-success' %>
           </td>
         </tr>
       <% end %>

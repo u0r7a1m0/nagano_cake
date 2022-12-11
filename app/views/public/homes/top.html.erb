@@ -1,24 +1,30 @@
 
-
-<div class="container mt-4">
+<div class="container">
 
   <div class="row">
     <div class="col-md-2">
       <div class="card mt-3">
+
         <div class="card-header">ジャンル検索</div>
-        <p class="card-text m-3">ケーキ</p>
-        <p class="card-text m-3">焼き菓子</p>
-        <p class="card-text m-3">プリン</p>
-        <p class="card-text m-3">キャンディ</p>
-      </div>
+          <% @genres.each do |genre| %>
+          <div class="my-2">
+            <p class="card-text ml-3"><%= genre.name %></p>
+          </div>
+          <% end %>
+        </div>
+      <!--  <p class="card-text m-3">ケーキ</p>-->
+      <!--  <p class="card-text m-3">焼き菓子</p>-->
+      <!--  <p class="card-text m-3">プリン</p>-->
+      <!--  <p class="card-text m-3">キャンディ</p>-->
+      <!--</div>-->
     </div>
     <div class="col-md-8 mt-3">
 
       <div class="card mb-3" style="">
-        <img class="card-img" src="/top.jpg" alt="">
+        <img class="card-img" src="/top_2.jpg" alt="">
         <div class="card-img-overlay d-flex align-items-center">
           <p class="text-white">
-            ようこそ、ながのCAKEへ！<br />
+            <strong>ようこそ、ながのCAKEへ！</strong><br />
             このサイトは、ケーキ販売のECサイトになります。<br />
             会員でない方も商品の閲覧はできますが、<br />
             購入には会員登録が必要になります。

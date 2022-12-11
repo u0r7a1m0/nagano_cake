@@ -6,10 +6,15 @@ class Admin::HomesController < ApplicationController
     # @order_details = OrderDetail.all
     @orders = Order.page(params[:page])
     @order_details = OrderDetail.page(params[:page])
+
+
   end
 
   private
 
+  def genre_params
+    params.require(:genre).permit(:name)
+  end
   def order_params
     params.require(:order).permit(:postal_code, :address, :name, :postage, :total_price, :order_status, :payment)
   end
