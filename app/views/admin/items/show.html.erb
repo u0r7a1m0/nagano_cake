@@ -10,9 +10,9 @@
 
   <div class="row mt-5 mx-auto">
       <!--商品画像-->
+
       <div class="col-md-4">
-        <%#= image_tag get_item_image(150,100) %>
-        <p class="text-center px-5 py-5 bg-secondary text-white">画像</p>
+        <%= image_tag @item.item_image, url: admin_item_path %>
       </div>
 
         <div class="col-md-8">
@@ -27,7 +27,7 @@
             </tr>
             <tr>
               <td>ジャンル</td>
-              <td><%= @item.genre.name %>></td>
+              <td><%= @item.genre.name %></td>
             </tr>
             <tr>
               <td>税込価格<br>(税抜価格)</td>
