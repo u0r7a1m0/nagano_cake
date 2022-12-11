@@ -1,14 +1,14 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-6">
-      <h5 class="bg-light d-inline px-4">商品新規登録</h5>
+    <div class="col-md-8">
+      <h5 class="bg-light d-inline px-4 ml-5">商品新規登録</h5>
     </div>
 
   </div>
 
   <div class="row mt-4">
     <div class="col-md-8 mx-auto">
-        <%= form_with model: @item do |f| %>
+        <%= form_with model: @item, url: admin_items_path do |f| %>
 
         <div class="field d-md-flex mt-3">
           <div class="col-md-3">
@@ -39,10 +39,19 @@
 
         <div class="field d-md-flex mt-3">
           <div class="col-md-3">
+          <%= f.label :'ジャンル'%>
+          </div>
+          <div class="col-md-6 d-flex">
+            <%= f.collection_select :genre_id, Genre.all, :id, :name, include_blank: "選択して下さい"  %>
+          </div>
+        </div>
+
+        <div class="field d-md-flex mt-3">
+          <div class="col-md-3">
           <%= f.label :'税抜価格'%>
           </div>
           <div class="col-md-6 d-flex">
-          <%= f.number_field :price, autofocus: true, id:"inputPrice", placeholder: "1000", class:'form-control' %>
+          <%= f.text_field :price, autofocus: true, id:"inputPrice", placeholder: "1000", class:'form-control' %>
           <p>円</p>
           </div>
         </div>
@@ -53,12 +62,10 @@
           </div>
           <div class="col-md-6">
             <label>
-              <%= f.radio_button :is_active, "true", checked: true %>販売中
-
-              </label>
-              <label class="ml-3">
-
-              <%= f.radio_button :is_active, "false" %>販売停止
+              <%= f.radio_button :is_active, true, checked: true %>販売中
+            </label>
+            <label class="ml-3">
+              <%= f.radio_button :is_active, false %>販売停止
             </label>
             </div>
         </div>

@@ -32,15 +32,15 @@
               </li>
               <!--マイページ-->
               <li class="nav-item">
-                <%= link_to 'マイページ', my_page_path, class: 'nav-link btn btn-outline-secondary mr-md-2 mb-sm-2' %>
+                <%= link_to 'マイページ', my_page_path, class: 'nav-link btn btn-outline-secondary mr-md-2 my-1' %>
               </li>
               <!--商品一覧-->
               <li class="nav-item">
-                <%= link_to '商品一覧', items_path, class: 'nav-link btn btn-outline-secondary mr-md-2 mb-sm-2' %>
+                <%= link_to '商品一覧', items_path, class: 'nav-link btn btn-outline-secondary mr-md-2 my-1' %>
               </li>
               <!--カート-->
               <li class="nav-item">
-              <%= link_to 'カート', cart_items_path, class: 'nav-link btn btn-outline-secondary mr-md-2 mb-sm-2' %>
+              <%= link_to 'カート', cart_items_path, class: 'nav-link btn btn-outline-secondary mr-md-2 my-1' %>
               </li>
               <!--ログアウト-->
               <li class="nav-item">
@@ -52,44 +52,44 @@
               <!--管理者ログイン-->
               <!--商品一覧-->
               <li class="nav-item">
-                <%= link_to '商品一覧', admin_items_path, class: 'nav-link btn btn-outline-secondary mr-md-2 mb-sm-2' %>
+                <%= link_to '商品一覧', admin_items_path, class: 'nav-link btn btn-outline-secondary mr-md-2  my-1' %>
               </li>
               <!--会員一覧-->
               <li class="nav-item">
-              <%= link_to '会員一覧', admin_customers_path, class: 'nav-link btn btn-outline-secondary mr-md-2 mb-sm-2' %>
+              <%= link_to '会員一覧', admin_customers_path, class: 'nav-link btn btn-outline-secondary mr-md-2 my-1' %>
               </li>
               <!--注文履歴一覧-->
               <li class="nav-item">
-              <%= link_to '注文履歴一覧', admin_customers_path, class: 'nav-link btn btn-outline-secondary mr-md-2 mb-sm-2' %>
+              <%= link_to '注文履歴一覧', admin_customers_path, class: 'nav-link btn btn-outline-secondary mr-md-2 my-1' %>
               </li>
               <!--ジャンル一覧-->
               <li class="nav-item">
-              <%= link_to 'ジャンル一覧', admin_genres_path, class: 'nav-link btn btn-outline-secondary mr-md-2 mb-sm-2' %>
+              <%= link_to 'ジャンル一覧', admin_genres_path, class: 'nav-link btn btn-outline-secondary mr-md-2 my-1' %>
               </li>
               <!--ログアウト-->
               <li class="nav-item">
-                <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: 'nav-link btn btn-outline-secondary' %>
+                <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: 'nav-link btn btn-outline-secondary mr-md-2 my-1' %>
               </li>
 
               <% else %>
               <!--未ログインユーザー-->
               <!--アバウト-->
               <li class="nav-item">
-                <%= link_to 'About',about_path, class: 'nav-link btn btn-outline-secondary mr-md-2 mb-sm-2' %>
+                <%= link_to 'About',about_path, class: 'nav-link btn btn-outline-secondary mr-md-2 my-1' %>
               </li>
               <!--商品一覧-->
               <li class="nav-item">
-                <%= link_to '商品一覧',items_path, class: 'nav-link btn btn-outline-secondary mr-md-2 mb-sm-2' %>
+                <%= link_to '商品一覧',items_path, class: 'nav-link btn btn-outline-secondary mr-md-2 my-1' %>
               </li>
               <!--新規登録-->
               <li class="nav-item">
-                <%= link_to '新規登録' ,new_customer_registration_path, class: 'nav-link btn btn-outline-secondary mr-md-2 mb-sm-2' %>
+                <%= link_to '新規登録' ,new_customer_registration_path, class: 'nav-link btn btn-outline-secondary mr-md-2 my-1' %>
               </li>
               <!--ログイン-->
               <li class="nav-item">
                 <% if request.fullpath.include? "/admin" %>
                   <!--admin側のheaderを返す-->
-                  <%= link_to 'ログイン', new_admin_session_path, class: 'nav-link btn btn-outline-secondary mr-md-2 mb-sm-2' %>
+                  <%= link_to 'ログイン', new_admin_session_path, class: 'nav-link btn btn-outline-secondary mr-md-2 my-1' %>
                   <% else %>
                   <!--user側のheaderを返す-->
                   <%= link_to 'ログイン', new_customer_session_path, class: 'nav-link btn btn-outline-secondary' %>

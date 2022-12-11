@@ -1,40 +1,57 @@
-<div class="container mt-4">
-<div>
-  <%= flash[:notice] %>
-</div>
+<div class="container">
+  <div class="text-success">
+    <%= flash[:notice] %>
+  </div>
   <div class="row">
-    <div class="col-md-3">
-      <div class="card mt-2">
-        <div class="card-header">ジャンル検索</div>
-        <p class="card-text m-3">ケーキ</p>
-        <p class="card-text m-3">焼き菓子</p>
-        <p class="card-text m-3">プリン</p>
-        <p class="card-text m-3">キャンディ</p>
-      </div>
+    <div class="col-md-10 mx-auto">
+      <h5 class="d-inline bg-light px-4">商品詳細</h5>
     </div>
-    <div class="col-md-3 mt-3">
-      <%#= image_tag user.get_item_image(150,100) %>
-    </div>
-    <div class="col-md-4">
-      <%= %>
-    </div>
-          </tr>
-          <tr class="border-top">
-            <th class="p-2">name</th>
-            <td class="p-2"><%#= item.name %></td>
-          </tr>
-          <tr class="border-top">
-            <th class="p-2">introduction</th>
-            <td class="p-2"><%#= item.introduction %></td>
-          </tr>
-
-    </div>
-
-
-
   </div>
 
+  <div class="row mt-5 mx-auto">
+      <!--商品画像-->
+      <div class="col-md-4">
+        <%#= image_tag get_item_image(150,100) %>
+        <p class="text-center px-5 py-5 bg-secondary text-white">画像</p>
+      </div>
 
+        <div class="col-md-8">
+          <table class="table-sm">
+            <tr>
+              <td class="col-md-3">商品名</td>
+              <td class="col-md-5"><%= @item.name %></td>
+            </tr>
+            <tr>
+              <td>商品説明</td>
+              <td><%= @item.introduction %></td>
+            </tr>
+            <tr>
+              <td>ジャンル</td>
+              <td><%= @item.genre.name %>></td>
+            </tr>
+            <tr>
+              <td>税込価格<br>(税抜価格)</td>
+              <td>××（<%= @item.price %>）<span>円</span></td>
+            </tr>
+            <tr>
+              <td>販売ステータス</td>
+                <%if @item.is_active %>
 
+                <td class="text-success">
+                販売中
+                </td>
+                <% else %>
+                <td class="text-secondary">
+                販売停止中
+                </td>
+                <% end %>
+            </tr>
+          </table>
 
+            <%= link_to '編集する', edit_admin_item_path, class: 'btn btn-success px-4 mt-4' %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

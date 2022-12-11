@@ -1,4 +1,5 @@
 <div class="container">
+  <div class="text-success mb-3"> <%= flash[:notice] %> </div>
   <div class="row">
     <div class="col-md-10 d-flex mx-auto">
       <div class="mr-auto">
@@ -12,6 +13,8 @@
     </div>
   </div>
 
+
+
   <div class="row">
     <div class="col-md-11 mx-auto">
       <table class="table mt-4 border-bottom">
@@ -20,17 +23,28 @@
           <th>商品ID</th>
           <th>商品名</th>
           <th>税抜価格</th>
-          <!--<th>ジャンル</th>-->
+          <th>ジャンル</th>
           <th>ステータス</th>
         </tr>
         </thead>
+        <% @items.each do |item| %>
         <tr>
-          <td>番号</td>
-          <td>チョコレートケーキ(リンク付き)</td>
-          <td>1,000</td>
-          <!--<td>ケーキ</td>-->
-          <td class="text-success">販売中</td>
+          <td><%= item.id %></td>
+          <td><%= link_to item.name, admin_item_path(item.id) %></td>
+          <td><%= item.price %></td>
+          <td><%= item.genre.name %></td>
+
+          <%if item.is_active %>
+          <td class="text-success">
+          販売中
+                </td>
+                <% else %>
+                <td class="text-secondary">
+                販売停止中
+                </td>
+                <% end %>
         </tr>
+        <% end %>
       </table>
 
 
