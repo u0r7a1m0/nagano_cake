@@ -1,23 +1,20 @@
 
 <div class="container">
-
   <div class="row">
     <div class="col-md-2">
+      <!--ジャンル検索-->
       <div class="card mt-3">
-
-        <div class="card-header">ジャンル検索</div>
-          <% @genres.each do |genre| %>
-          <div class="my-2">
-            <p class="card-text ml-3"><%= genre.name %></p>
-          </div>
-          <% end %>
+        <div class="card-header">
+        ジャンル検索
         </div>
-      <!--  <p class="card-text m-3">ケーキ</p>-->
-      <!--  <p class="card-text m-3">焼き菓子</p>-->
-      <!--  <p class="card-text m-3">プリン</p>-->
-      <!--  <p class="card-text m-3">キャンディ</p>-->
-      <!--</div>-->
+        <% @genres.each do |genre| %>
+        <div class="my-2">
+          <p class="card-text ml-3"><%= genre.name %></p>
+        </div>
+        <% end %>
+      </div>
     </div>
+
     <div class="col-md-8 mt-3">
 
       <div class="card mb-3" style="">
@@ -33,7 +30,22 @@
       </div>
 
       <h5><strong>新着商品</strong></h5>
-      <div class="text-right my-3">
+
+      <div class="row">
+
+
+      <% @items.each do |item| %>
+      <div class="new-items inline-block">
+        <div style="width:10rem;">
+          <%= image_tag item.item_image,size: '150x100', url: item_path(item.id) %>
+            <p class="card-title mb-1 mt-3"><%= item.name %></p>
+            <p class="card-text">¥<%= item.price.to_s(:delimited) %></p>
+        </div>
+      </div>
+      <% end %>
+
+
+      <div class="col-md-10 d-flex justify-content-end mx-auto mt-3">
       <%= link_to '全ての商品を見る>', items_path %>
 
       </div>

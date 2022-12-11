@@ -1,7 +1,7 @@
-<div class="container">
-  <div class="text-success">
+  <p class="text-success mb-3">
     <%= flash[:notice] %>
-  </div>
+  </p>
+<div class="container">
   <div class="row">
     <div class="col-md-10 mx-auto">
       <h5 class="d-inline bg-light px-4">商品詳細</h5>
@@ -33,7 +33,7 @@
             </tr>
             <tr>
               <td>税込価格<br>(税抜価格)</td>
-              <td>××（<%= @item.price %>）<span>円</span></td>
+              <td>××（<%= @item.price.to_s(:delimited) %>）<span>円</span></td>
             </tr>
             <tr>
               <td>販売ステータス</td>
