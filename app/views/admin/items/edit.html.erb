@@ -1,1 +1,90 @@
-<h2>admin/items#edit</h2>
+<div class="container">
+  <div class="row">
+    <div class="col-md-8">
+      <h5 class="bg-light d-inline px-4 ml-5">商品編集</h5>
+    </div>
+
+  </div>
+
+  <div class="row mt-4">
+    <div class="col-md-8 mx-auto">
+        <%= form_with model: @item, url: admin_item_path(@item.id) do |f| %>
+
+        <div class="field d-md-flex mt-3">
+          <div class="col-md-3">
+            <%= f.label :'商品画像'%>
+          </div>
+          <div class="col-md-6">
+          <%= f.file_field :item_image, placeholder: "", accept: "image/*" %>
+          </div>
+        </div>
+
+        <div class="field d-md-flex mt-3">
+          <div class="col-md-3">
+          <%= f.label :'商品名'%>
+          </div>
+          <div class="col-md-6">
+          <%= f.text_field :name, autofocus: true, autocomplete: "name", placeholder: "商品名", class: "form-control " %>
+          </div>
+        </div>
+
+        <div class="field d-md-flex mt-3">
+          <div class="col-md-3">
+          <%= f.label :'商品説明'%>
+          </div>
+          <div class="col-md-6">
+          <%= f.text_area :introduction, autofocus: true, id:"inputIntroduction", placeholder: "ここに説明文を記述します", class:'form-control' %>
+          </div>
+        </div>
+
+        <div class="field d-md-flex mt-3">
+          <div class="col-md-3">
+          <%= f.label :'ジャンル'%>
+          </div>
+          <div class="col-md-6 d-flex">
+            <%= f.collection_select :genre_id, Genre.all, :id, :name, include_blank: "選択して下さい"  %>
+          </div>
+        </div>
+
+        <div class="field d-md-flex mt-3">
+          <div class="col-md-3">
+          <%= f.label :'税抜価格'%>
+          </div>
+          <div class="col-md-6 d-flex">
+          <%= f.text_field :price, autofocus: true, id:"inputPrice", placeholder: "1000", class:'form-control' %>
+          <p>円</p>
+          </div>
+        </div>
+
+        <div class="field d-md-flex mt-3">
+          <div class="col-md-3">
+          <%= f.label :'販売ステータス'%>
+          </div>
+          <div class="col-md-6">
+            <label>
+              <%= f.radio_button :is_active, true %>販売中
+            </label>
+            <label class="ml-3">
+              <%= f.radio_button :is_active, false %>販売停止
+            </label>
+            </div>
+        </div>
+
+
+
+      <div class="mx-auto d-flex justify-content-center">
+      <button type="submit" class="btn btn-success my-4 mx-auto px-4">
+        変更を保存
+      </button>
+
+      </div>
+      <% end %>
+
+
+    </div>
+  </div>
+
+
+
+
+</div>

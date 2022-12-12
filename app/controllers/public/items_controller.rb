@@ -1,8 +1,9 @@
 class Public::ItemsController < ApplicationController
 
   def index
-    @items = Item.all
+    @items = Item.where(is_active:true).all
     @count = @items.count
+    @genres = Genre.all
 
   end
 
@@ -23,9 +24,6 @@ class Public::ItemsController < ApplicationController
     #   render :index
     # end
 
-  def index
-    @items = Item.all
-  end
 
   def show
     @item = Item.find(params[:id])
@@ -37,7 +35,7 @@ class Public::ItemsController < ApplicationController
   private
 
   def item_params
-    params.require(:item).permit(:name, :item_image, :introduction, :price, :is_active)
+    params.require(:item).permit(:name, :item_image, :introduction, :price, :is_active, :genre_id)
   end
   def genre_params
     params.require(:genre).permit(:name)

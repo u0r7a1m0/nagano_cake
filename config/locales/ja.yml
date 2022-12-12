@@ -19,3 +19,9 @@ ja:
       payment:
         credit_card: "クレジットカード"
         bank: "銀行振込"
+
+
+ja:
+  time:
+    formats:
+      default: "%Y/%m/%d %H:%M:%S"

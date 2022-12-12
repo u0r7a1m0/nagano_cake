@@ -1,7 +1,7 @@
 <!--管理者画面homes/topページ-->
 <div class="container">
   <div class="row">
-    <div class="col-md-10 mx-auto">
+    <div class="col-md-12 mx-auto">
 
   <h5 class="bg-light d-inline px-4">注文履歴一覧</h5>
     <table class="table bg-light mt-3">
@@ -13,10 +13,14 @@
       </thead>
       <!--1つ目の配列.zip(2つ目の配列) do |変数1, 変数2|-->
       <% @orders.zip(@order_details) do |order,order_detail| %>
-      <tr>
-        <td><%= order.create_at %></td>
+      <tr class="border-bottom">
+        <td>
+          <%= link_to admin_order_path(order.id) do %>
+          <%= l order.create_at %>
+          <% end %>
+        </td>
         <td><%= order.name %></td>
-        <td>注文個数</td>
+        <td><%= order_detail.amount %></td>
         <td><%= order.order_status %></td>
       </tr>
       <% end %>

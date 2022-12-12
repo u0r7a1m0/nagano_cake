@@ -21,11 +21,27 @@ class Admin::ItemsController < ApplicationController
 
   def index
     @items = Item.all
+    @genres = Genre.all
   end
 
   def show
     @item = Item.find(params[:id])
 
+  end
+
+  def edit
+    @item = Item.find(params[:id])
+  end
+
+  def update
+    @item = Item.find(params[:id])
+    if @item.update(item_params)
+    # 更新に成功したときの処理
+      flash[:notice]="You have updated item successfully."
+      redirect_to admin_item_path(@item.id)
+    else
+      render :edit
+    end
   end
 
 
