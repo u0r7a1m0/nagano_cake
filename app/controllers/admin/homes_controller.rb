@@ -4,6 +4,7 @@ class Admin::HomesController < ApplicationController
   def top
     # @orders = Order.all
     # @order_details = OrderDetail.all
+    ## ページネーションへ記述変更
     @orders = Order.page(params[:page])
     @order_details = OrderDetail.page(params[:page])
 

@@ -1,1 +1,36 @@
-<h2>pablic/items#show</h2>
+<div class="container">
+
+  <div class="row mt-3">
+    <div class="col-md-2 mb-3">
+      <div class="card">
+        <div class="card-header small">
+        ジャンル検索
+        </div>
+        <% @genres.each do |genre| %>
+        <div class="my-2">
+          <p class="card-text ml-3 small"><%= genre.name %></p>
+        </div>
+        <% end %>
+      </div>
+    </div>
+
+
+    <!--商品画像-->
+    <div class="col-md-4 ml-auto">
+      <%= image_tag @item.item_image,size: '240x160', url: admin_item_path %>
+    </div>
+
+    <!--商品情報-->
+    <div class="col-md-5 ml-md-3 mt-3 mr-auto">
+      <h5><b><%= @item.name %></b></h5>
+      <p><%= @item.introduction %></p>
+      <p><span>¥</span><%= @item.with_tax_price.to_s(:delimited) %>（税込）</p>
+      <%= form_with model: @cart_item do |f| %>
+        <%= f.select :amout, [1,2,3,4,5,6,7,8,9,10], include_blank: "個数選択", class:"form-select" %>
+        <%= f.submit 'カートに入れる', class:"btn btn-success ml-4" %>
+      <% end %>
+
+    </div>
+
+  </div>
+</div>

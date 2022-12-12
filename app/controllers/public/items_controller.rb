@@ -7,29 +7,26 @@ class Public::ItemsController < ApplicationController
 
   end
 
-
-
-
-    # def create
-    # @book = Book.new(book_params)
-    # @book.user_id = current_user.id
-
-    # if @book.save
-    #   # 投稿成功した場合
-    #   flash[:notice]="You have created book successfully."
-    #   redirect_to book_path(@book.id)
-    # else
-    #   # 投稿が失敗した場合
-    #   @books=Book.all
-    #   render :index
-    # end
-
-
   def show
     @item = Item.find(params[:id])
-
+    @genres = Genre.all
+    @cart_item = CartItem.new
   end
 
+  def create
+    @item = Item.find(params[:id])
+    @cart_item = CartItem.new(cart_item_params)
+    @cart_item.customer_id = current_customer.id
+
+    if @cart_item.save
+      # 投稿成功した場合
+      flash[:notice]="カートに入れました！"
+      redirect_to item_path(@item.id)
+    else
+      # 投稿が失敗した場合
+      render :show
+    end
+  end
 
 
   private
@@ -40,4 +37,8 @@ class Public::ItemsController < ApplicationController
   def genre_params
     params.require(:genre).permit(:name)
   end
+  def cart_item_params
+    params.require(:cart_item).permit(:customer_id, :genre_id, :amount)
+  end
+
 end
