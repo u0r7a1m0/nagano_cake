@@ -1,24 +1,27 @@
 class Public::AddressesController < ApplicationController
 
-
   def index
     @address = Address.new
-    @addresses = Address.all
+    @addresses = current_customer.address
   end
 
   def create
     @address = Address.new(address_params)
+    @address.customer_id = current_customer.id
     if @address.save
+
       # 投稿成功した場合
-      flash[:notice]="You have created Address successfully."
+      flash[:notice]="登録完了しました！"
       redirect_to addresses_path
     else
       @address = Address.new
-      render index
+      @addresses = Address.all
+      render :index
     end
   end
 
   def edit
+    
   end
 
 
@@ -26,6 +29,9 @@ class Public::AddressesController < ApplicationController
   end
 
   def destroy
+    @address = Address.find(params[:id])
+    @address.destroy
+    redirect_to addresses_path
   end
 
   private

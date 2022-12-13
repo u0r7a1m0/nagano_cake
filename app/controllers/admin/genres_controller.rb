@@ -9,7 +9,7 @@ class Admin::GenresController < ApplicationController
     @genre = Genre.new(genre_params)
     if @genre.save
     # 投稿成功した場合
-    flash[:notice]="You have created genre successfully."
+    flash[:notice]="作成完了しました！"
     redirect_to admin_genres_path
     else
     # 投稿が失敗した場合
@@ -28,7 +28,7 @@ class Admin::GenresController < ApplicationController
     @genre = Genre.find(params[:id])
     if @genre.update(genre_params)
       # 更新に成功したときの処理
-      flash[:notice]="You have updated Genre successfully."
+      flash[:notice]="更新完了しました！"
       redirect_to admin_genres_path
     else
       render 'edit'
