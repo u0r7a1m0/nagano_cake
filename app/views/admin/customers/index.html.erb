@@ -6,7 +6,7 @@
   </div>
 
   <div class="row">
-    <div class="col-md-9 mx-auto">
+    <div class="col-md-10 mx-auto">
       <table class="table mt-4">
         <thead class="bg-light">
         <tr>
@@ -33,9 +33,11 @@
           <% end %>
         </tr>
         <% end %>
-        <%#= paginate @customers %>
         </tr>
       </table>
     </div>
+  </div>
+  <div class="row">
+    <div class="mx-auto"><%= paginate @customers %></div>
   </div>
 </div>

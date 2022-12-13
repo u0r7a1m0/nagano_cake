@@ -3,7 +3,7 @@ class Admin::ItemsController < ApplicationController
 
   def new
     @item = Item.new
-    
+
   end
 
   def create
@@ -11,7 +11,7 @@ class Admin::ItemsController < ApplicationController
       # binding.pry
     if @item.save
     # 投稿成功した場合
-    flash[:notice]="You have created item successfully."
+    flash[:notice]="登録完了しました！"
     redirect_to admin_item_path(@item.id)
     else
     # 投稿が失敗した場合
@@ -21,7 +21,8 @@ class Admin::ItemsController < ApplicationController
   end
 
   def index
-    @items = Item.all
+    # @items = Item.all
+    @items = Item.all.page(params[:page])
     @genres = Genre.all
   end
 
@@ -38,7 +39,7 @@ class Admin::ItemsController < ApplicationController
     @item = Item.find(params[:id])
     if @item.update(item_params)
     # 更新に成功したときの処理
-      flash[:notice]="You have updated item successfully."
+      flash[:notice]="更新完了しました！"
       redirect_to admin_item_path(@item.id)
     else
       render :edit

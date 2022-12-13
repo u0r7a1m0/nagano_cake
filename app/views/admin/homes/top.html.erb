@@ -12,7 +12,20 @@
         <th>注文ステータス</th>
       </thead>
       <!--1つ目の配列.zip(2つ目の配列) do |変数1, 変数2|-->
-      <% @orders.zip(@order_details) do |order,order_detail| %>
+      <!--<%# @orders.zip(@order_details) do |order,order_detail| %>-->
+      <!--<tr class="border-bottom">-->
+      <!--  <td>-->
+      <!--    <%#= link_to admin_order_path(order.id) do %>-->
+      <!--    <%#= l order.create_at %>-->
+      <!--    <%# end %>-->
+      <!--  </td>-->
+      <!--  <td><%#= order.name %></td>-->
+      <!--  <td><%#= order_detail.amount %></td>-->
+      <!--  <td><%#= order.order_status %></td>-->
+      <!--</tr>-->
+      <!--<%# end %>-->
+
+      <% @orders.each do |order| %>
       <tr class="border-bottom">
         <td>
           <%= link_to admin_order_path(order.id) do %>
@@ -20,12 +33,17 @@
           <% end %>
         </td>
         <td><%= order.name %></td>
-        <td><%= order_detail.amount %></td>
+        <td>
+          <%= order.order_details.sum(:amount) %>
+        </td>
         <td><%= order.order_status %></td>
       </tr>
       <% end %>
+
+
+
       <!--ページネーション複数のテーブルから情報もってくるときの方法教えてもらう！-->
-      <%#= paginate orders %>
+      <%= paginate @orders %>
     </table>
 
     </div>

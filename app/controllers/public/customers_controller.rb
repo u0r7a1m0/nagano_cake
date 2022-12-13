@@ -3,15 +3,22 @@ class Public::CustomersController < ApplicationController
   # before_action :is_matching_login_customer, only: [:show, :edit, :update, :unsubscribe, :withdraw]
 
   def show
-    # @customer = Customer.find(params[:id])
+
   end
 
   def edit
-
-
+    @customer = current_customer
   end
 
   def update
+    @customer = current_customer
+    if @customer.update(customer_params)
+    # 更新に成功したときの処理
+      flash[:notice]="更新完了しました！"
+      redirect_to my_page_path
+    else
+      render 'edit'
+    end
   end
 
   def unsubscribe

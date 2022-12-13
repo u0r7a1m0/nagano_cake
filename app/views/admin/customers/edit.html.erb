@@ -1,6 +1,6 @@
 <div class="container">
 
-  <%= form_with model: @customer ,url: edit_admin_customer_path do |f| %>
+  <%= form_with model: @customer ,url: admin_customer_path(@customer.id) do |f| %>
   <h5 class="bg-light d-inline px-2"><%= @customer.full_name %>さんの会員情報編集</h5>
 
   <div class="row mt-4">
@@ -89,10 +89,10 @@
         </div>
         <div class="col-md-6">
           <label>
-            <%= f.radio_button :is_active, true %>有効
+            <%= f.radio_button :is_deleted, false %>有効
           </label>
           <label class="ml-3">
-            <%= f.radio_button :is_active, false %>退会
+            <%= f.radio_button :is_deleted, true %>退会
           </label>
         </div>
       </div>
