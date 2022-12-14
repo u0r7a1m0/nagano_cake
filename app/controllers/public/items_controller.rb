@@ -14,6 +14,7 @@ class Public::ItemsController < ApplicationController
   end
 
   def create
+    # binding.pry
     @item = Item.find(params[:id])
     @cart_item = CartItem.new(cart_item_params)
     @cart_item.customer_id = current_customer.id
@@ -24,8 +25,12 @@ class Public::ItemsController < ApplicationController
       redirect_to item_path(@item.id)
     else
       # 投稿が失敗した場合
+      
       render :show
     end
+  end
+  def destroy
+    
   end
 
 
@@ -38,7 +43,7 @@ class Public::ItemsController < ApplicationController
     params.require(:genre).permit(:name)
   end
   def cart_item_params
-    params.require(:cart_item).permit(:customer_id, :genre_id, :amount)
+    params.require(:cart_item).permit(:price, :amount, :production_status, :item_id, :customer_id)
   end
 
 end

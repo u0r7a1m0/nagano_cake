@@ -14,10 +14,9 @@
       </div>
     </div>
 
-
     <!--商品画像-->
     <div class="col-md-4 ml-auto">
-      <%= image_tag @item.item_image,size: '240x160', url: admin_item_path %>
+      <%= image_tag @item.item_image,size: '240x160', url: item_path %>
     </div>
 
     <!--商品情報-->
@@ -26,11 +25,19 @@
       <p><%= @item.introduction %></p>
       <p><span>¥</span><%= @item.with_tax_price.to_s(:delimited) %>（税込）</p>
       <%= form_with model: @cart_item do |f| %>
-        <%= f.select :amout, [1,2,3,4,5,6,7,8,9,10], include_blank: "個数選択", class:"form-select" %>
-        <%= f.submit 'カートに入れる', class:"btn btn-success ml-4" %>
+        <div class="select">
+          <!--値だけ渡したい時に使う！商品のIDとか！！-->
+          <%= f.hidden_field :item_id, :value => @item.id %>
+          <!--お客様にいれてほしいものを表示させる時につかう！-->
+          <%= f.select(:amount, [1,2,3,4,5,6,7,8,9,10],{ :include_blank => '個数選択' }, :required => true ) =%>
+          <%= f.submit 'カートに入れる', class:"btn btn-success ml-4" %>
+        </div>
       <% end %>
 
     </div>
 
   </div>
 </div>
+
+        <!--<#%= f.select :amout, *[1..10], include_blank: "個数選択", class:"form-select" %>-->
+        <!--<%#= f.select :amount, *[1..3] %>-->
