@@ -22,13 +22,9 @@ class Public::CartItemsController < ApplicationController
   end
 
 
-
-
-
-
   def destroy
-    @post_image = 削除するPostImageレコードを取得
-    @post_image.削除
+    @cart_item = CartItem.find(params[:id])
+    @cart_item.destroy
     redirect_to :index_path
   end
 
@@ -37,6 +33,6 @@ class Public::CartItemsController < ApplicationController
     params.require(:cart_item).permit(:price, :amount, :production_status, :item_id, :customer_id)
   end
   def item_params
-    params.require(:item).permit(:name, :item_image, :introduction, :price, :is_active)
+    params.require(:item).permit(:name, :item_image, :introduction, :price, :is_active, :genre_id)
   end
 end
