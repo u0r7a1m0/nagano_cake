@@ -2,9 +2,6 @@ class Public::CustomersController < ApplicationController
 
   # before_action :is_matching_login_customer, only: [:show, :edit, :update, :unsubscribe, :withdraw]
 
-  def show
-
-  end
 
   def edit
     @customer = current_customer
