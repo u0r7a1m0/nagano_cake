@@ -2,7 +2,10 @@
     <div class="row">
       <div class="col-md-11 d-flex justify-content-end mx-auto">
         <h5 class="mr-auto d-inline bg-light px-4">ショッピングカート</h5>
-        <button class="btn btn-danger">カートを空にする</button>
+        <%= link_to "カートを空にする", destroy_all_path, method: :delete, "data-confirm" => "本当に消しますか？",class: "btn btn-danger btn-sm" %>
+        <%#= link_to "カートを空にする", all_destroy_cart_items_path, method: :delete,class: "btn btn-danger btn-sm" %>
+
+
       </div>
     </div>
 
@@ -29,11 +32,23 @@
                 <%= cart_item.item.with_tax_price.to_s(:delimited) %>
               </td>
               <!--数量-->
-              <td><%= cart_item.amount %></td>
+              <td>
+                <%= cart_item.amount %>
+                <%#= form_with model: @cart_item do |f| %>
+                  <div class="select">
+                  <!--値だけ渡したい時に使う！商品のIDとか！！-->
+                  <%#= f.hidden_field :amount, :value => amount %>
+                  <!--お客様にいれてほしいものを表示させる時につかう！-->
+                  <%#= f.select(:amount, [1,2,3,4,5,6,7,8,9,10], :required => true ) =%>
+                  <%#= f.select :amount, options_for_select(cart_item.amount.to_i) %>
+
+                  </div>
+                <%# end %>
+              </td>
               <td><%= cart_item.subtotal.to_s(:delimited) %></td>
 
               <td>
-                <%= link_to '削除する', cart_item_path(cart_item.item_id), method: :delete, "data-confirm" => "本当に消しますか？", class:"btn bg-danger text-white" %>
+                <%= link_to '削除する', cart_item_path(cart_item.id,cart_item), method: :delete, "data-confirm" => "本当に消しますか？", class:"btn bg-danger text-white" %>
 
               </td>
             </tr>
@@ -43,12 +58,12 @@
       </div>
     </div>
 
-      <div class="row">
-        <div class="col-md-4">
+      <div class="row my-1">
+        <div class="col-md-4 my-1">
           <%= link_to '買い物を続ける' ,root_path, class:"btn btn-primary" %>
         </div>
 
-        <div class="col-md-6 ml-auto">
+        <div class="col-md-6 ml-auto my-1">
           <table class="table table-bordered">
             <tr>
               <td class="table-cell bg-light">合計金額</td>
@@ -62,7 +77,7 @@
           </table>
         </div>
       </div>
-      <div class="row">
+      <div class="row my-1">
         <div class="col-md-3 mx-auto">
           <%= link_to '情報入力に進む' ,new_order_path, class:"btn btn-success mx-auto" %>
         </div>
