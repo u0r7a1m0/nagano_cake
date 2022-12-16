@@ -9,7 +9,6 @@ class Public::AddressesController < ApplicationController
     @address = Address.new(address_params)
     @address.customer_id = current_customer.id
     if @address.save
-
       # 投稿成功した場合
       flash[:notice]="登録完了しました！"
       redirect_to addresses_path
