@@ -27,6 +27,21 @@ class Public::CartItemsController < ApplicationController
     @cart_items = current_customer.cart_items
     # @items = Item.all.sum(:price)
     @items = Item.all
+    # トータルの金額
+    @total = 0
+  end
+
+  def update
+    @cart_item = CartItem.find(params[:id])
+    # byebug
+    # paramsのカートアイテムの中のamoutを取り出す記述　→　（[amoutカラム]: params[カートアイテム][数量]）
+    if @cart_item.update(amount: params[:cart_item][:amount])
+    # 更新に成功したときの処理
+      flash[:notice]="更新完了しました！"
+      redirect_to cart_items_path
+    else
+      render :index
+    end
   end
 
   def destroy
@@ -34,13 +49,13 @@ class Public::CartItemsController < ApplicationController
     cart_item = CartItem.find(params[:id])
     cart_item.destroy
     @cart_items = CartItem.all
-    render 'index'
+    redirect_to cart_items_path
   end
 
   def destroy_all  #カート内全て削除
     cart_items = CartItem.all
     cart_items.destroy_all
-    render template: 'cart_items/index'
+    redirect_to cart_items_path
   end
 
   private
