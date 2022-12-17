@@ -10,7 +10,7 @@ class OrderDetail < ApplicationRecord
     in_production: 2, #製作中
     production_end: 3 #製作終了
   }
-  
+
     ## 小計を求めるメソッド
   def subtotal
     item.with_tax_price * amount
@@ -18,5 +18,11 @@ class OrderDetail < ApplicationRecord
   ## 消費税を求めるメソッド
   def with_tax_price
     (price * 1.1).floor
+  end
+  def full_name
+    self.last_name + " " + self.first_name
+  end
+  def address_display
+    '〒' + postal_code + ' ' + address + ' ' + full_name
   end
 end

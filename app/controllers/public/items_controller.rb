@@ -1,8 +1,9 @@
 class Public::ItemsController < ApplicationController
 
   def index
-    @items = Item.where(is_active:true).all
-    @count = @items.count
+    # @items = Item.where(is_active:true).all
+    @items = Item.where(is_active:true).all.page(params[:page]).per(8)
+    @count = Item.where(is_active:true).all.count
     @genres = Genre.all
 
   end
@@ -25,12 +26,12 @@ class Public::ItemsController < ApplicationController
       redirect_to item_path(@item.id)
     else
       # 投稿が失敗した場合
-      
+
       render :show
     end
   end
   def destroy
-    
+
   end
 
 

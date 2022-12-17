@@ -13,16 +13,19 @@ class Customer < ApplicationRecord
   has_many :cart_items, dependent: :destroy
   has_many :orders, dependent: :destroy
 
-  def address_display
-    '〒' + postal_code + ' ' + address + ' ' + name
-  end
   def full_name
     self.last_name + " " + self.first_name
+  end
+  def address_display
+    '〒' + postal_code + ' ' + address + ' ' + full_name
+  end
+  def address_display_nameless
+    '〒' + postal_code + ' ' + address
   end
   def full_name_kana
     self.last_name_kana + " " + self.first_name_kana
   end
-  
+
   def active_for_authentication?
     super && (self.is_deleted == false)
   end

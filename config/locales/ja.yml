@@ -6,8 +6,6 @@ ja:
         production_pending: "製作待ち"
         in_production: "製作中"
         production_end: "製作終了"
-
-
     order:
       order_status:
         payment_wating: "入金待ち"
@@ -15,13 +13,9 @@ ja:
         in_product: "製作中"
         preparing_delivery: '発送準備中'
         delivered: "発送済み"
-
       payment:
         credit_card: "クレジットカード"
         bank: "銀行振込"
-
-
-ja:
   time:
     formats:
       default: "%Y/%m/%d %H:%M:%S"

@@ -12,10 +12,15 @@ class Order < ApplicationRecord
     delivered: 4 #発送済み
   }
   enum payment:{
-    credit_card:0, #クレジットカード
-    bank:1 #銀行振込
+    credit_card: 0, #クレジットカード
+    bank: 1 #銀行振込
   }
-  
+  def full_name
+    self.last_name + " " + self.first_name
+  end
+  def address_display
+    '〒' + postal_code + ' ' + address
+  end
   ## 小計を求めるメソッド
   def subtotal
     item.with_tax_price * amount
@@ -24,7 +29,7 @@ class Order < ApplicationRecord
   def with_tax_price
     (price * 1.1).floor
   end
-  
+
   def address_display
   '〒' + postal_code + ' ' + address + ' ' + name
   end
