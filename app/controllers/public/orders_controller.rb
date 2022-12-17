@@ -4,11 +4,13 @@ class Public::OrdersController < ApplicationController
     @order = Order.new
   end
 
-
   # 注文情報確認画面：２-1
   def confirm
-    @order = Order.new(order_params)
 
+    @cart_items = current_customer.cart_items
+
+    @order = Order.new(order_params)
+    @order.customer_id = current_customer.id
     # １.カレントユーザの登録住所の場合
     if params[:order][:address_number] == "1"
     @order.name = current_customer.full_name
@@ -36,7 +38,6 @@ class Public::OrdersController < ApplicationController
     @cart_items = current_customer.cart_items.all
     @total = @cart_items.inject(0) { |sum, item| sum + item.subtotal }
   end
-
 
   # 注文確定処理：2-2
   def create

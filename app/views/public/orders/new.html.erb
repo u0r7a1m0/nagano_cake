@@ -5,9 +5,9 @@
     </div>
   </div>
 
+  <%= form_with model: @order, url: confirm_path, method: :post do |f| %>
   <div class="row mt-3">
     <div class="col-md-12">
-      <%= form_with model: @order, url: confirm_path, method: :post do |f| %>
       <h6><b>支払い方法</b></h6>
       <div class="col-md-7">
         <div>
@@ -22,7 +22,6 @@
           <%#= f.label :payment_bank, "銀行振込" %>
           <%= f.radio_button :payment, Order.payments.key(1) %>
           <%= f.label :payment_bank, Order.payments_i18n[:bank]%>
-
         </div>
       </div>
 
@@ -31,9 +30,8 @@
         <!--ご自身の住所-->
         <div class="mt-2">
           <div>
-
-          <%= f.radio_button :address_number, '1', :checked => true %>
-          <%= f.label :address, 'ご自身の住所' %>
+            <%= f.radio_button :address_number, '1', :checked => true %>
+            <%= f.label :address, 'ご自身の住所' %>
           </div>
           <div class="ml-3">
             <div>
@@ -91,11 +89,9 @@
       </div>
     </div>
     <div class="row mx-auto">
-        <%= f.submit '確認画面へ進む', class: 'btn btn-primary mx-auto mt-3 px-4'  %>
-
+        <%= f.submit '確認画面へ進む', class: 'btn btn-primary mx-auto mt-3 px-4' %>
     </div>
       <% end %>
 
-  </div>
 </div>
 
