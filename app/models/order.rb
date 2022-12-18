@@ -3,6 +3,7 @@ class Order < ApplicationRecord
 
   has_many :order_details
   belongs_to :customer
+  has_many :items, through: :order_details
 
   enum order_status:{
     payment_wating: 0, #入金待ち

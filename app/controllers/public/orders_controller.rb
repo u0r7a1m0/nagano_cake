@@ -25,9 +25,6 @@ class Public::OrdersController < ApplicationController
       @order.name = Address.find(params[:order][:address_id]).name
       @order.address = Address.find(params[:order][:address_id]).address
       @order.postal_code = Address.find(params[:order][:address_id]).postal_code
-      # else
-      #   render :new
-      # end
     elsif params[:order][:address_number] == "3"
       address_new = current_customer.addresses.new(address_params)
       if address_new.save # 確定前(確認画面)で save
@@ -74,6 +71,7 @@ class Public::OrdersController < ApplicationController
 
   # 注文履歴画面：３
   def index
+    @orders = current_customer.orders
 
   end
 
