@@ -18,7 +18,7 @@ class Order < ApplicationRecord
   def full_name
     self.last_name + " " + self.first_name
   end
-  def address_display
+  def address_display_nameless
     '〒' + postal_code + ' ' + address
   end
   ## 小計を求めるメソッド
