@@ -24,14 +24,21 @@
       <h5><b><%= @item.name %></b></h5>
       <p><%= @item.introduction %></p>
       <p><span>¥</span><%= @item.with_tax_price.to_s(:delimited) %>（税込）</p>
+      <!--ログイン済み-->
+      <% if customer_signed_in? %>
       <%= form_with model: @cart_item do |f| %>
         <div class="select">
           <!--値だけ渡したい時に使う！商品のIDとか！！-->
           <%= f.hidden_field :item_id, :value => @item.id %>
           <!--お客様にいれてほしいものを表示させる時につかう！-->
           <%= f.select(:amount, [1,2,3,4,5,6,7,8,9,10],{ :include_blank => '個数選択' }, :required => true ) =%>
+
           <%= f.submit 'カートに入れる', class:"btn btn-success ml-4" %>
         </div>
+        <% end %>
+        <% else %>
+
+
       <% end %>
     </div>
   </div>

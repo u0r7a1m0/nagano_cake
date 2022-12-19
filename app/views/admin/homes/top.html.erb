@@ -4,46 +4,31 @@
     <div class="col-md-12 mx-auto">
 
   <h5 class="bg-light d-inline px-4">注文履歴一覧</h5>
-    <table class="table bg-light mt-3">
-      <thead>
+    <table class="table mt-3">
+      <tr class="bg-light">
         <th>購入日時</th>
         <th>購入者</th>
         <th>注文個数</th>
         <th>注文ステータス</th>
-      </thead>
-      <!--1つ目の配列.zip(2つ目の配列) do |変数1, 変数2|-->
-      <!--<%# @orders.zip(@order_details) do |order,order_detail| %>-->
-      <!--<tr class="border-bottom">-->
-      <!--  <td>-->
-      <!--    <%#= link_to admin_order_path(order.id) do %>-->
-      <!--    <%#= l order.create_at %>-->
-      <!--    <%# end %>-->
-      <!--  </td>-->
-      <!--  <td><%#= order.name %></td>-->
-      <!--  <td><%#= order_detail.amount %></td>-->
-      <!--  <td><%#= order.order_status %></td>-->
-      <!--</tr>-->
-      <!--<%# end %>-->
-
+      </tr>
       <% @orders.each do |order| %>
       <tr class="border-bottom">
         <td>
-          <%= link_to admin_order_path(order.id) do %>
-          <%= l order.create_at %>
-          <% end %>
+          <%= order.created_at %>
+          <%# end %>
         </td>
         <td><%= order.name %></td>
         <td>
-          <%= order.order_details.sum(:amount) %>
+          <%#= order.order_details.sum(:amount) %>
         </td>
-        <td><%= order.order_status %></td>
+        <td><%#= order_detail.order.order_status %></td>
       </tr>
       <% end %>
 
 
 
       <!--ページネーション複数のテーブルから情報もってくるときの方法教えてもらう！-->
-      <%= paginate @orders %>
+      <%#= paginate @orders %>
     </table>
 
     </div>

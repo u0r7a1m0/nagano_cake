@@ -2,11 +2,10 @@ class Admin::HomesController < ApplicationController
     before_action :authenticate_admin!
 
   def top
-    # @orders = Order.all
-    # @order_details = OrderDetail.all
+    @orders = Order.all
+    @order_details = OrderDetail.all
     ## ページネーションへ記述変更
     @orders = Order.all.page(params[:page])
-
 
   end
 

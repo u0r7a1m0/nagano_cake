@@ -13,7 +13,7 @@
         <tr>
           <td class="bg-light">配送先</td>
           <td>
-            <%= @order.postal_code %><br>
+            〒<%= @order.postal_code %><br>
             <%= @order.address %><br>
             <%= @order.name %>
           </td>
@@ -33,15 +33,15 @@
       <table class="table table-bordered">
         <tr>
           <td class="bg-light">商品合計</td>
-          <td></td>
+          <td><%= @order.total_price.to_s(:delimited) %></td>
         </tr>
         <tr>
           <td class="bg-light">配送料</td>
-          <td></td>
+          <td><%= @order.postage.to_s(:delimited) %></td>
         </tr>
         <tr>
           <td class="bg-light"><b>ご請求額</b></td>
-          <td></td>
+          <td><%= (@order.total_price += @order.postage).to_s(:delimited) %></td>
         </tr>
       </table>
     </div>
@@ -57,16 +57,18 @@
           <td>個数</td>
           <td>小計</td>
         </tr>
-        <% @order.items.each do |item| %>
-        <tr>
-          <td><%= item.name %></td>
-          <td><%= item.price %></td>
-          <td>
 
-            <%#= item.amount %></td>
-          <td><%#= item.subtotal %></td>
-            <% end %>
+        <% @order_details.each do |order_detail| %>
+        <tr>
+          <td><%= order_detail.item.name %></td>
+
+          <td><%= order_detail.item.price.to_s(:delimited) %></td>
+          <td>
+            <%= order_detail.amount %>
+          </td>
+          <td><%= (order_detail.item.price *= order_detail.amount).to_s(:delimited) %></td>
         </tr>
+        <% end %>
       </table>
     </div>
   </div>

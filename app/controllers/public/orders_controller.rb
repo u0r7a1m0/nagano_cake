@@ -72,12 +72,12 @@ class Public::OrdersController < ApplicationController
   # 注文履歴画面：３
   def index
     @orders = current_customer.orders
-
   end
 
   # 注文履歴詳細ページ：４
   def show
-    @order = current_customer.orders.find(params[:id])
+    @order = Order.find(params[:id])
+    @order_details = @order.order_details
   end
 
   private
