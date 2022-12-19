@@ -77,7 +77,7 @@ class Public::OrdersController < ApplicationController
 
   # 注文履歴詳細ページ：４
   def show
-
+    @order = current_customer.orders.find(params[:id])
   end
 
   private
