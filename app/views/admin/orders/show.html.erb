@@ -1,5 +1,5 @@
 <div class="container">
-  <h5>注文履歴詳細</h5>
+  <h5 class="bg-light d-inline px-4">注文履歴詳細</h5>
   <div class="row">
     <div class="col-md-9">
       <table class="table table-borderless">
@@ -37,7 +37,7 @@
   </div>
   <div class="row">
     <div class="col-md-7">
-      <table class="table border-bottom">
+      <table class="table table-border-bottom">
         <tr class="bg-light">
           <td class="small"><b>商品名</b></td>
           <td class="small"><b>単価(税込)</b></td>
@@ -59,6 +59,22 @@
           </td>
         </tr>
         <% end %>
+      </table>
+    </div>
+    <div class="col-md-3 offset-md-1 mt-auto">
+      <table class="table table-borderless">
+        <tr>
+          <td><b>商品合計</b></td>
+          <td><%= @order.total_price.to_s(:delimited) %>円</td>
+        </tr>
+        <tr>
+          <td><b>送料</b></td>
+          <td><%= @order.postage %>円</td>
+        </tr>
+        <tr>
+          <td><b>請求金額合計</b></td>
+          <td><b><%= (@order.total_price += @order.postage).to_s(:delimited) %>円</b></td>
+        </tr>
       </table>
     </div>
   </div>

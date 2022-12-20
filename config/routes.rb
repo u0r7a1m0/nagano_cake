@@ -37,9 +37,6 @@ Rails.application.routes.draw do
 
     resources :items, :cart_items, :orders, :addresses
   end
-
-
-
   #####################
   # 管理者側のルーティング設定
   ## URLの頭に「admin」入れる設定

@@ -3,10 +3,18 @@ class Admin::OrderDetailsController < ApplicationController
 
   def update
     @order_detail = OrderDetail.find(params[:id])
-    # byebug
-    # paramsのカートアイテムの中のamoutを取り出す記述　→　（[amoutカラム]: params[カートアイテム][数量]）
+    @order = @order_detail.order
+    @order_details = @order.order_details.all
+    is_status = true
     if @order_detail.update(production_status: params[:order_detail][:production_status])
-    # 更新に成功したときの処理
+      @order.update(order_status: 2) if @order_detail.production_status == "in_production"
+      @order_details.each do |order_detail|
+        if order_detail.production_status != "production_end"
+          is_status = false
+        end
+      end
+      @order.update(order_status: 3) if is_status
+      # 更新に成功したときの処理
       flash[:notice]="更新完了しました！"
       redirect_to admin_order_path(@order_detail.order.id)
     else
@@ -14,14 +22,23 @@ class Admin::OrderDetailsController < ApplicationController
     end
   end
 
+  #   def update
+  #   @order_detail = OrderDetail.find(params[:id])
+  #   if @order_detail.update(production_status: params[:order_detail][:production_status])
+  #   # 更新に成功したときの処理
+  #     flash[:notice]="更新完了しました！"
+  #     redirect_to admin_order_path(@order_detail.order.id)
+  #   else
+  #     render :show
+  #   end
+  # end
+
   private
-  def customer_params
-    params.require(:customer).permit(:last_name, :first_name, :last_name_kana, :first_name_kana, :email, :encrypted_password, :postal_code, :address, :telephone_number, :is_deleted)
-  end
+
   def order_params
-    params.require(:order).permit(:postal_code, :address, :name, :postage, :total_price, :order_status, :payment)
+    params.require(:order).permit(:order_status, :payment)
   end
   def order_detail_params
-    params.require(:order_detail).permit(:price, :amount, :production_status)
+    params.require(:order_detail).permit(:production_status)
   end
 end

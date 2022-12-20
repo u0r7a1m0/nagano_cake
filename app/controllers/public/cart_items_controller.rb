@@ -25,8 +25,6 @@ class Public::CartItemsController < ApplicationController
 
   def index
     @cart_items = current_customer.cart_items
-    # @items = Item.all.sum(:price)
-    @items = Item.all
     # トータルの金額
     @total = 0
   end
