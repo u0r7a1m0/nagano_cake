@@ -1,1 +1,67 @@
-<h2>admin/orders#show</h2>
+<div class="container">
+  <h5>注文履歴詳細</h5>
+  <div class="row">
+    <div class="col-md-9">
+      <table class="table table-borderless">
+        <tr>
+          <td style="width:30%"><b>購入者</b></td>
+          <td><%= @order.name %></td>
+        </tr>
+        <tr>
+          <td><b>注文日</b></td>
+          <td><%= @order.created_at.strftime('%Y/%m/%d') %></td>
+        </tr>
+        <tr>
+          <td><b>配送先</b></td>
+          <td>
+            〒<%= @order.postal_code %>
+            <%= @order.address %><br>
+            <%= @order.name %>
+          </td>
+        </tr>
+        <tr>
+          <td><b>支払い方法</b></td>
+          <td><%= @order.payment_i18n %></td>
+        </tr>
+        <tr>
+          <td><b>注文ステータス</b></td>
+          <td>
+            <%= form_with(model: @order, url: admin_order_path, method: :patch, local: true) do |f| %>
+              <%= f.select :order_status, Order.order_statuses_i18n.invert, {prompt: false} %>
+              <%= f.submit "更新",class:'btn btn-success' %>
+            <% end %>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-7">
+      <table class="table border-bottom">
+        <tr class="bg-light">
+          <td class="small"><b>商品名</b></td>
+          <td class="small"><b>単価(税込)</b></td>
+          <td class="small"><b>数量</b></td>
+          <td class="small"><b>小計</b></td>
+          <td class="small"><b>制作ステータス</b></td>
+        </tr>
+        <% @order_details.each do |order_detail| %>
+        <tr>
+          <td><%= order_detail.item.name %></td>
+          <td><%= order_detail.item.price.to_s(:delimited) %></td>
+          <td><%= order_detail.amount %></td>
+          <td><%= order_detail.subtotal.to_s(:delimited) %></td>
+          <td>
+            <%= form_with model: order_detail,url: admin_order_detail_path(order_detail.id),method: :patch do |f| %>
+            <%= f.select :production_status, OrderDetail.production_statuses_i18n.invert, {prompt: false} %>
+            <%= f.submit "更新", class:"btn btn-success"%>
+            <% end %>
+          </td>
+        </tr>
+        <% end %>
+      </table>
+    </div>
+  </div>
+
+
+</div>

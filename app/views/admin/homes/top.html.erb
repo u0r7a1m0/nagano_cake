@@ -1,7 +1,7 @@
 <!--管理者画面homes/topページ-->
 <div class="container">
   <div class="row">
-    <div class="col-md-12 mx-auto">
+    <div class="col-md-11 mx-auto">
 
   <h5 class="bg-light d-inline px-4">注文履歴一覧</h5>
     <table class="table mt-3">
@@ -14,21 +14,26 @@
       <% @orders.each do |order| %>
       <tr class="border-bottom">
         <td>
-          <%= order.created_at %>
-          <%# end %>
+          <%= link_to admin_order_path(order) do %>
+            <%= order.created_at.strftime('%Y/%m/%d %H:%M:%S') %>
+          <% end %>
         </td>
-        <td><%= order.name %></td>
         <td>
-          <%#= order.order_details.sum(:amount) %>
+          <%= order.name %>
         </td>
-        <td><%#= order_detail.order.order_status %></td>
+        <td>
+          <%= order.order_details.sum(:amount) %>
+        </td>
+        <td>
+          <%= order.order_status_i18n %>
+        </td>
       </tr>
       <% end %>
 
 
 
       <!--ページネーション複数のテーブルから情報もってくるときの方法教えてもらう！-->
-      <%#= paginate @orders %>
+      <%= paginate @orders %>
     </table>
 
     </div>
