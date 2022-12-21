@@ -4,7 +4,7 @@ class Admin::OrdersController < ApplicationController
   def show
     # @customer = Customer.find(params[:id])
     # @orders = Order.find(params[:id])
-    @orders = Order.all.page(params[:page])
+    @orders = Order.all.page(params[:page]).per(10)
     @order = Order.find(params[:id])
 
     # 一つの注文に対しての情報がこれで取り出せる！

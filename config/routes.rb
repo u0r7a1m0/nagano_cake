@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   ###################################
   root to: 'public/homes#top'
 
+
   # 会員側のルーティング設定
   ## URLの「public」部分なしのができる！
   scope module: :public do

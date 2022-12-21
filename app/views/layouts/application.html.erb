@@ -27,9 +27,12 @@
 
             <!--カスタマーログイン-->
             <% if customer_signed_in? %>
+            <div>
+              <div class="d-lg-flex">
               <li class="nav-item">
                 <p class="text-left mt-2 mr-md-5 text-success">ようこそ、<%= current_customer.last_name %>さん!</p>
               </li>
+
               <!--マイページ-->
               <li class="nav-item">
                 <%= link_to 'マイページ', my_page_path, class: 'nav-link btn btn-outline-secondary mr-md-2 my-1' %>
@@ -46,34 +49,55 @@
               <li class="nav-item">
                 <%= link_to "ログアウト", destroy_customer_session_path, method: :delete, class: 'nav-link btn btn-outline-secondary my-1' %>
               </li>
+              </div>
 
-              <% elsif admin_signed_in? %>
+              <div class="search_form text-right">
+                <%= form_tag(items_path, :method => "get") do %>
+                <%= text_field_tag :search %>
+                <%= submit_tag "検索" ,:item => nil ,class: "button is-info"%>
+                <% end %>
+              </div>
+            </div>
+            <% elsif admin_signed_in? %>
               <!--管理者ログイン-->
               <!--商品一覧-->
-              <li class="nav-item">
-                <%= link_to '商品一覧', admin_items_path, class: 'nav-link btn btn-outline-secondary mr-md-2  my-1' %>
-              </li>
-              <!--会員一覧-->
-              <li class="nav-item">
-              <%= link_to '会員一覧', admin_customers_path, class: 'nav-link btn btn-outline-secondary mr-md-2 my-1' %>
-              </li>
-              <!--注文履歴一覧-->
-              <li class="nav-item">
-              <%= link_to '注文履歴一覧', admin_root_path, class: 'nav-link btn btn-outline-secondary mr-md-2 my-1' %>
-              </li>
-              <!--ジャンル一覧-->
-              <li class="nav-item">
-              <%= link_to 'ジャンル一覧', admin_genres_path, class: 'nav-link btn btn-outline-secondary mr-md-2 my-1' %>
-              </li>
-              <!--ログアウト-->
-              <li class="nav-item">
-                <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: 'nav-link btn btn-outline-secondary mr-md-2 my-1' %>
-              </li>
+            <div>
+              <div class="d-lg-flex">
+                <li class="nav-item">
+                  <%= link_to '商品一覧', admin_items_path, class: 'nav-link btn btn-outline-secondary mr-md-2  my-1' %>
+                </li>
+                <!--会員一覧-->
+                <li class="nav-item">
+                <%= link_to '会員一覧', admin_customers_path, class: 'nav-link btn btn-outline-secondary mr-md-2 my-1' %>
+                </li>
+                <!--注文履歴一覧-->
+                <li class="nav-item">
+                <%= link_to '注文履歴一覧', admin_root_path, class: 'nav-link btn btn-outline-secondary mr-md-2 my-1' %>
+                </li>
+                <!--ジャンル一覧-->
+                <li class="nav-item">
+                <%= link_to 'ジャンル一覧', admin_genres_path, class: 'nav-link btn btn-outline-secondary mr-md-2 my-1' %>
+                </li>
+                <!--ログアウト-->
+                <li class="nav-item">
+                  <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: 'nav-link btn btn-outline-secondary mr-md-2 my-1' %>
+                </li>
+              </div>
+
+              <div class="search_form text-right">
+                <%= form_tag(items_path, :method => "get") do %>
+                <%= text_field_tag :search %>
+                <%= submit_tag "検索" ,:item => nil ,class: "button is-info"%>
+                <% end %>
+              </div>
+            </div>
 
               <% else %>
               <!--未ログインユーザー-->
               <!--アバウト-->
-              <li class="nav-item">
+            <div>
+              <div class="d-lg-flex">
+                <li class="nav-item">
                 <%= link_to 'About',about_path, class: 'nav-link btn btn-outline-secondary mr-md-2 my-1' %>
               </li>
               <!--商品一覧-->
@@ -94,8 +118,28 @@
                   <%= link_to 'ログイン', new_customer_session_path, class: 'nav-link btn btn-outline-secondary my-1' %>
                 <% end %>
               </li>
+              </div>
+
+              <div class="search_form text-right">
+                <%= form_tag(items_path, :method => "get") do %>
+                <%= text_field_tag :search %>
+                <%= submit_tag "検索" ,:item => nil ,class: "button is-info"%>
+                <% end %>
+              </div>
               <% end %>
+            </div>
+
             </ul>
+            </div>
+
+            <!--<div class="search_form">-->
+            <!--  <%#= form_tag(items_path, :method => "get") do %>-->
+            <!--  <%#= text_field_tag :search %>-->
+            <!--  <%#= submit_tag "検索" ,:item => nil ,class: "button is-info"%>-->
+            <!--  <%# end %>-->
+            <!--</div>-->
+
+
           </div>
         </div>
       </nav>

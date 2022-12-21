@@ -7,7 +7,7 @@ class Admin::HomesController < ApplicationController
     # @order_details = OrderDetail.all
     # @order_detail = OrderDetail.find(params[:id])
     ## ページネーションへ記述変更
-    @orders = Order.all.page(params[:page])
+    @orders = Order.all.page(params[:page]).per(10)
 
 
   end
